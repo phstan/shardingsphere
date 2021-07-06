@@ -57,6 +57,7 @@ import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain
 import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain.statement.ddl.AlterSynonymStatementTestCase;
 import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain.statement.ddl.AlterSystemStatementTestCase;
 import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain.statement.ddl.AlterTableStatementTestCase;
+import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain.statement.ddl.AlterViewStatementTestCase;
 import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain.statement.ddl.CreateDatabaseStatementTestCase;
 import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain.statement.ddl.CreateFunctionStatementTestCase;
 import org.apache.shardingsphere.test.sql.parser.parameterized.jaxb.cases.domain.statement.ddl.CreateIndexStatementTestCase;
@@ -276,6 +277,9 @@ public final class SQLParserTestCases {
     
     @XmlElement(name = "create-view")
     private final List<CreateViewStatementTestCase> createViewTestCase = new LinkedList<>();
+
+    @XmlElement(name = "alter-view")
+    private final List<AlterViewStatementTestCase> alterViewTestCase = new LinkedList<>();
     
     @XmlElement(name = "drop-database")
     private final List<DropDatabaseStatementTestCase> dropDatabaseTestCase = new LinkedList<>();
@@ -372,6 +376,7 @@ public final class SQLParserTestCases {
         putAll(alterProcedureTestCase, result);
         putAll(alterDatabaseTestCase, result);
         putAll(createViewTestCase, result);
+        putAll(alterViewTestCase, result);
         putAll(createTriggerTestCase, result);
         putAll(createServerTestCase, result);
         putAll(createProcedureTestCase, result);

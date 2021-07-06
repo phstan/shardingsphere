@@ -71,6 +71,10 @@ tableSpace
     : TABLESPACE name
     ;
 
+schema
+    : SCHEMA name
+    ;
+
 onCommitOption
     : ON COMMIT (DROP | DELETE ROWS | PRESERVE ROWS)
     ;
@@ -109,11 +113,15 @@ createDatabase
     ;
 
 createView
-    : CREATE (OR REPLACE)? (TEMP | TEMPORARY)? RECURSIVE? VIEW qualifiedName
+    : CREATE (OR REPLACE)? (TEMP | TEMPORARY | MATERIALIZED)? RECURSIVE? VIEW qualifiedName
       (LP_ (columnList (COMMA_ columnList)*)? RP_)?
       (WITH reloptions)?
       AS select
       (WITH (CASCADE | LOCAL)? CHECK OPTION)?
+    ;
+
+refreshView
+    : REFRESH (TEMP | TEMPORARY | MATERIALIZED) VIEW qualifiedName
     ;
 
 columnList
@@ -1107,6 +1115,13 @@ alterTablespace
     | OWNER TO roleSpec)
     ;
 
+alterSchema
+    : ALTER SCHEMA name
+    ( SET|RESET reloptions
+    | RENAME TO name
+    | OWNER TO roleSpec)
+    ;
+
 alterTextSearchConfiguration
     : ALTER TEXT SEARCH CONFIGURATION anyName alterTextSearchConfigurationClauses
     ;
@@ -1584,6 +1599,10 @@ createTablespace
     : CREATE TABLESPACE name (OWNER roleSpec)? LOCATION STRING_ (WITH reloptions)?
     ;
 
+createSchema
+    : CREATE SCHEMA qualifiedName
+    ;
+
 createTextSearch
     : CREATE TEXT SEARCH (CONFIGURATION | DICTIONARY | PARSER | TEMPLATE) anyName definition
     ;
@@ -1735,6 +1754,10 @@ dropTablespace
     : DROP TABLESPACE (IF EXISTS)? qualifiedName
     ;
 
+dropSchema
+    : DROP SCHEMA (IF EXISTS)? qualifiedName (CASCADE)
+    ;
+
 dropTextSearch
     : DROP TEXT SEARCH (CONFIGURATION | DICTIONARY | PARSER | TEMPLATE) (IF EXISTS)? name dropBehavior?
     ;
@@ -1756,7 +1779,7 @@ dropUserMapping
     ;
 
 dropView
-    : DROP VIEW (IF EXISTS)? nameList dropBehavior?
+    : DROP (MATERIALIZED)? VIEW (IF EXISTS)? nameList dropBehavior?
     ;
 
 importForeignSchema

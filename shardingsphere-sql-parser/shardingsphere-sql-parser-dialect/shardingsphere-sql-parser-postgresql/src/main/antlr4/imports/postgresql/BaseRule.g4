@@ -1052,11 +1052,19 @@ timezone
     ;
 
 character
-    : characterWithLength | characterWithoutLength
+    : characterWithLength | characterWithoutLength | characterWithoutLengthByte | characterWithoutLengthChar
     ;
 
 characterWithLength
     : characterClause LP_ NUMBER_ RP_
+    ;
+
+characterWithoutLengthByte
+    : characterClause LP_ NUMBER_ BYTE RP_
+    ;
+
+characterWithoutLengthChar
+    : characterClause LP_ NUMBER_ CHAR RP_
     ;
 
 characterWithoutLength

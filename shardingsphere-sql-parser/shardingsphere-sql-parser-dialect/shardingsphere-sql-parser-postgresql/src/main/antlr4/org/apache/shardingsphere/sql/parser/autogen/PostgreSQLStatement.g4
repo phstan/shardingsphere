@@ -71,5 +71,12 @@ execute
     | prepare
     | executeStmt
     | deallocate
+    | createTablespace
+    | dropTablespace
+    | alterTablespace
+    | createSchema
+    | dropSchema
+    | alterSchema
+    | refreshView
     ) SEMI_?
     ;

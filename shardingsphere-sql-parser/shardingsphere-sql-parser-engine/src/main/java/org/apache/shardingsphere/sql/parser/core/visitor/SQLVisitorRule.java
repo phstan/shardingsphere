@@ -108,6 +108,8 @@ public enum SQLVisitorRule {
     
     DROP_VIEW("DropView", SQLStatementType.DDL),
 
+    REFRESH_VIEW("RefreshView", SQLStatementType.DDL),
+
     CREATE_SEQUENCE("CreateSequence", SQLStatementType.DDL),
 
     ALTER_SEQUENCE("AlterSequence", SQLStatementType.DDL),
@@ -123,6 +125,18 @@ public enum SQLVisitorRule {
     DEALLOCATE("Deallocate", SQLStatementType.DDL),
     
     SET_TRANSACTION("SetTransaction", SQLStatementType.TCL),
+
+    CREATE_TABLESPACE("CreateTablespace", SQLStatementType.DDL),
+
+    ALTER_TABLESPACE("AlterTablespace", SQLStatementType.DDL),
+
+    DROP_TABLESPACE("DropTablespace", SQLStatementType.DDL),
+
+    CREATE_SCHEMA("CreateSchema", SQLStatementType.DDL),
+
+    ALTER_SCHEMA("AlterSchema", SQLStatementType.DDL),
+
+    DROP_SCHEMA("DropSchema", SQLStatementType.DDL),
     
     SET_IMPLICIT_TRANSACTIONS("SetImplicitTransactions", SQLStatementType.TCL),
     
